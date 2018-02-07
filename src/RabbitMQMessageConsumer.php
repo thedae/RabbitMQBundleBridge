@@ -2,7 +2,6 @@
 
 namespace SimpleBus\RabbitMQBundleBridge;
 
-use Exception;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 use SimpleBus\Asynchronous\Consumer\SerializedEnvelopeConsumer;
@@ -40,7 +39,7 @@ class RabbitMQMessageConsumer implements ConsumerInterface
             );
 
             return self::MSG_ACK;
-        } catch (Exception $exception) {
+        } catch (\Throwable $exception) {
             $this->eventDispatcher->dispatch(
                 Events::MESSAGE_CONSUMPTION_FAILED,
                 new MessageConsumptionFailed($msg, $exception)

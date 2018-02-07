@@ -2,17 +2,16 @@
 
 namespace SimpleBus\RabbitMQBundleBridge\Event;
 
-use Exception;
 use PhpAmqpLib\Message\AMQPMessage;
 
 class MessageConsumptionFailed extends AbstractMessageEvent
 {
     /**
-     * @var Exception
+     * @var \Throwable
      */
     private $exception;
 
-    public function __construct(AMQPMessage $message, Exception $exception)
+    public function __construct(AMQPMessage $message, \Throwable $exception)
     {
         parent::__construct($message);
 
